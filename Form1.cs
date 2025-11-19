@@ -1,8 +1,15 @@
+using System.Diagnostics;
+
 namespace Bouncing
 {
     public partial class Form1 : Form
     {
+        private Font font = new Font("Arial", 20, FontStyle.Bold);
+        private Brush brush = Brushes.Black;
+        private Stopwatch stopwatch = Stopwatch.StartNew();
         private Body body = new Body(100, 100);
+
+        private TimeSpan previousTime = TimeSpan.Zero;
         public Form1()
         {
             InitializeComponent();
@@ -15,7 +22,18 @@ namespace Bouncing
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            body.Draw(e.Graphics);
+            var elapsed = stopwatch.Elapsed;
+            var deltaTime = (elapsed - previousTime).Milliseconds/1000.0;
+            previousTime = elapsed;
+
+
+            e.Graphics.DrawString(deltaTime.ToString(), font, brush, new Point(50,50));
+            body.Draw(e.Graphics, deltaTime);
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

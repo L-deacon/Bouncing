@@ -35,7 +35,7 @@
             // timer1
             // 
             timer1.Enabled = true;
-            timer1.Interval = 32;
+            timer1.Interval = 2000;
             timer1.Tick += timer1_Tick;
             // 
             // Form1
@@ -43,6 +43,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            DoubleBuffered = true;
             Name = "Form1";
             Text = "Bouncing Simulation";
             Paint += Form1_Paint;
